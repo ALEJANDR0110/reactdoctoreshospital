@@ -22,10 +22,24 @@ export default class DetallesDoctor extends Component {
     componentDidMount = () => {
         this.loadDoctor();
     }
+
+    componentDidUpdate = (oldProps) => {
+        if(oldProps.iddoctor !== this.props.iddoctor) {
+            this.loadDoctor()
+        }
+    }
     render() {
         return (
             <div>
                 <h1>Detalles del Doctor {this.props.iddoctor}</h1>
+                {
+                this.state.doctor !== null &&
+                <div>
+                    <h3>Apellido: {this.state.doctor.apellido}</h3>
+                    <h3>Especialidad: {this.state.doctor.especialidad}</h3>
+                    <h3>Salario: {this.state.doctor.salario}</h3>
+                </div>
+                }
             </div>
         )
     }
