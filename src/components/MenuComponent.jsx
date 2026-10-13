@@ -50,17 +50,13 @@ export default class MenuComponent extends Component {
                                     this.state.hospitales.map((hospital, index) => {
                                         return(
                                             <li key={index} >
-                                                <NavLink className="dropdown-item" to={"/doctores/" + hospital.idhospital}>
+                                                <NavLink className="dropdown-item" to={"/doctores/" + hospital.idHospital}>
                                                     {hospital.nombre}
                                                 </NavLink>
                                             </li>
                                         )
                                     })
                                 }
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                             </li>
                             <li className="nav-item">
