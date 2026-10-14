@@ -8,24 +8,23 @@ export default class DetallesDoctor extends Component {
         doctor: null
     }
     
-    loadDoctor = () => {
+    findDoctor = () => {
         let request = "/api/Doctores/" + this.props.iddoctor;
         axios.get(this.url + request).then((response) => {
+            console.log("Find Doctor")
             this.setState({
                 doctor: response.data
             })
-            console.log(response.data)
-            console.log("adios")
         })
     }
 
     componentDidMount = () => {
-        this.loadDoctor();
+        this.findDoctor();
     }
 
     componentDidUpdate = (oldProps) => {
         if(oldProps.iddoctor !== this.props.iddoctor) {
-            this.loadDoctor()
+            this.findDoctor()
         }
     }
     render() {
@@ -33,12 +32,23 @@ export default class DetallesDoctor extends Component {
             <div>
                 <h1>Detalles del Doctor {this.props.iddoctor}</h1>
                 {
-                this.state.doctor !== null &&
-                <div>
-                    <h3>Apellido: {this.state.doctor.apellido}</h3>
-                    <h3>Especialidad: {this.state.doctor.especialidad}</h3>
-                    <h3>Salario: {this.state.doctor.salario}</h3>
-                </div>
+                    this.state.doctor &&
+                    (
+                        <ul className='list-group'>
+                            <li className='list-group-item'>
+                                Apellido: {this.state.doctor.apellido}
+                            </li>
+                            <li className='list-group-item'>
+                                Especialidad: {this.state.doctor.especialidad}
+                            </li>
+                            <li className='list-group-item'>
+                                Salario: {this.state.doctor.salario}
+                            </li>
+                            <li className='list-group-item'>
+                                Hospital: {this.state.doctor.idHospital}
+                            </li>
+                        </ul>
+                    )
                 }
             </div>
         )

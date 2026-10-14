@@ -36,31 +36,47 @@ export default class MenuComponent extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+                                <NavLink className="nav-link active" aria-current="page" to="/">
+                                    Home
+                                </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/doctores/22">Doctores</NavLink>
+                                <NavLink className="nav-link active" aria-current="page" to="/ejemplos">
+                                    Ejemplos Servicios
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link active" aria-current="page" to="/hospitales">
+                                    Hospitales
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/doctores/22">
+                                    Doctores
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link active" aria-current="page" to="/createhospital">
+                                    New Hospital
+                                </NavLink>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Hospitales
                                 </a>
-                            <ul className="dropdown-menu">
-                                {
-                                    this.state.hospitales.map((hospital, index) => {
-                                        return(
-                                            <li key={index} >
-                                                <NavLink className="dropdown-item" to={"/doctores/" + hospital.idHospital}>
-                                                    {hospital.nombre}
-                                                </NavLink>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link disabled" aria-disabled="true">Disabled</a>
+                                <ul className="dropdown-menu">
+                                    {
+                                        this.state.hospitales.map((hospital, index) => {
+                                            return(
+                                                <li key={index} >
+                                                    <NavLink className="dropdown-item" to={"/doctores/" + hospital.idHospital}>
+                                                        {hospital.nombre}
+                                                    </NavLink>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
                             </li>
                         </ul>
                     </div>

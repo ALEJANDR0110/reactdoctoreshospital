@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import Global from '../Global'
-import axios from 'axios'
 import DetallesDoctor from './DetallesDoctor';
+import ServiceHospitales from '../services/ServiceHospitales';
 
 export default class DoctoresComponent extends Component {
-    url = Global.urlApiDoctores;
+    service = new ServiceHospitales();
 
     state = {
         doctores: [],
-        idDoctor: 0 
+        idDoctor: 0
     }
 
     mostrarDetalles = (iddoc) => {
@@ -18,12 +17,9 @@ export default class DoctoresComponent extends Component {
     }
 
     loadDoctoresHospital = () => {
-        let request = "api/doctores/doctoreshospital/" + this.props.idhospital;
-
-        axios.get(this.url + request).then((response) => {
-            console.log("Leyendo doctores")
+        this.service.getDoctoresHospital(this.props.idhospital).then(result => {
             this.setState({
-                doctores: response.data
+                doctores: result
             })
         })
     }
@@ -35,6 +31,9 @@ export default class DoctoresComponent extends Component {
     componentDidUpdate = (oldProps) => {
         if(oldProps.idhospital != this.props.idhospital) {
             this.loadDoctoresHospital();
+            this.setState({
+                idDoctor: 0
+            })
         }
     }
 
@@ -61,7 +60,11 @@ export default class DoctoresComponent extends Component {
                                         <td>{doc.especialidad}</td>
                                         <td>{doc.salario}</td>
                                         <td>{doc.idHospital}</td>
-                                        <td><button onClick={() => this.mostrarDetalles(doc.idDoctor)}>Detalles</button></td>
+                                        <td>
+                                            <button onClick={() => this.mostrarDetalles(doc.idDoctor)} className='btn btn-danger'>
+                                                Detalles
+                                            </button>
+                                        </td>
                                     </tr>
                                 )
                             })
